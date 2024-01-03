@@ -29,15 +29,17 @@ mvn clean package
 Executable artifacts are generated inside the `target` directory. For ease of use, there is an already executable JAR inside the target folder.
 To review a full list of configurable parameters, see the `application.yml`, or review the [configuration section of the Mork documentation](https://docs.mork-optimization.com/en/latest/features/config/).
 
-Example 1: execute default experiment with the default set of instances
+Example 1: execute all experiments with the default set of instances
 ```text
 java -jar target/PDSP-0.19-SNAPSHOT.jar 
 ```
 
-Example: execute the IteratedGreedyExperiment using a different set of instances, located inside the `newinstances` folder.
+Example: execute `Experiment2` using a different set of instances, located inside the `newinstances` folder.
 ```
-java -jar target/PDSP-0.19-SNAPSHOT.jar --instances.path.default=newinstances --solver.experiment=IteratedGreedyExperiment
+java -jar target/PDSP-0.19-SNAPSHOT.jar --instances.path.default=newinstances --solver.experiment=Experiment2
 ```
+
+All experiments are declared inside the `src/main/java/es/urjc/etsii/grafo/PDSP/experiments` folder. New experiments can be easily added and invoked as necessary.
 
 ## Cite
 
