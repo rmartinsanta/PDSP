@@ -4,7 +4,7 @@ import es.urjc.etsii.grafo.metrics.AbstractMetric;
 
 public class CacheEvictionCount extends AbstractMetric {
 
-    protected CacheEvictionCount(long referenceNanoTime) {
+    public CacheEvictionCount(long referenceNanoTime) {
         super(referenceNanoTime);
     }
 }

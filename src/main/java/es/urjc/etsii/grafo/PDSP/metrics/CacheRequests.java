@@ -4,7 +4,7 @@ import es.urjc.etsii.grafo.metrics.AbstractMetric;
 
 public class CacheRequests extends AbstractMetric {
 
-    protected CacheRequests(long referenceNanoTime) {
+    public CacheRequests(long referenceNanoTime) {
         super(referenceNanoTime);
     }
 }
