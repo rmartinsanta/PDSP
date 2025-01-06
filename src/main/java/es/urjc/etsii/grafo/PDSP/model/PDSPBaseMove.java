@@ -5,7 +5,7 @@ import es.urjc.etsii.grafo.solution.LazyMove;
 /**
  * Base class for all movements for the PDSP problem. All movements should extend this class.
  */
-public abstract class PDSPBaseMove extends LazyMove<PDSPSolution, PDSPInstance> {
+public abstract class PDSPBaseMove extends LazyMove<PDSPBaseMove, PDSPSolution, PDSPInstance> {
 
     /**
      * Move constructor
@@ -44,7 +44,7 @@ public abstract class PDSPBaseMove extends LazyMove<PDSPSolution, PDSPInstance> 
      * @return the next move in this generator sequence if there is a next move, return null to signal end of sequence.
      */
     @Override
-    public LazyMove<PDSPSolution, PDSPInstance> next(PDSPSolution solution) {
+    public PDSPBaseMove next(PDSPSolution solution) {
         throw new UnsupportedOperationException("Not implemented");
     }
 

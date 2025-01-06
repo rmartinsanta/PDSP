@@ -41,7 +41,7 @@ solver:
   nWorkers: 6
 
   # Execute benchmark before starting solver? False to skip benchmark.
-  benchmark: true
+  benchmark: false
 
 
   # Autoconfig properties
