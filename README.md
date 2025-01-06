@@ -21,13 +21,61 @@ Authors involved in this work and their respective contributions:
 - Manuel Laguna
 
 
-## Datasets
+## Instance format
+There are different instance formats that are frequently used in this family of problems. The most common are explained in the next subsections.
+For more details, see the [PDSPInstanceImporter](https://github.com/rmartinsanta/PDSP/blob/main/src/main/java/es/urjc/etsii/grafo/PDSP/model/PDSPInstanceImporter.java) class, where the actual loading process is implemented.
+
+Example graph that will be explained in different formats:
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/a443fbb9-fdd8-47b7-ab0b-7a36b91c6af5" />
+</p>
 
 
-### Instance format
+### IEE format
+Files ending in `.graph` are loaded as loaded using the IEE parser. The file starts with a line containing the number of nodes (N) and the number of edges (E).
+In the next E lines, in each line we have the edge definition, containing the two nodes that are connected by this edge. 
+Note that IEE format is one indexed, nodes start counting at 1!
 
-(Explain instance format so other users may easily use them even if not using your code.)
+Example:
+```IEE
+3 2
+1 2
+2 3
+```
+In this instance, we have 3 nodes and two edges. Nodes 1 and 2, and 2 and 3 are connected, but nodes 1 and 3 are not directly connected.
 
+### Adjacency matrix
+First number in file (N) represents the number of nodes in the instance. Then, the next N x N numbers contain the weight of the edge, 1 means connected, 0 not connected.
+Example:
+```Adjacency matrix
+3
+0 1 0
+1 0 1
+0 1 0
+```
+Note that the matrix must be symmetric, as the graph is not directed.
+
+### PTXT format
+A very verbose text based format that we do not recommend using. Example using the same graph:
+```ptxt
+Number Of Vertices
+3
+Edges
+Number edges containting node 0
+1
+list
+1
+Number edges containting node 1
+2
+list
+0
+2
+Number edges containting node 2
+1
+list
+1
+```
+Note that this format is 0 indexed.
 
 ## Executing (Recommended)
 Use Docker to easily create a Java environment with all dependencies installed. You can use the following commands to run the project:
@@ -69,7 +117,7 @@ New experiments can be easily added and invoked as necessary.
 ## Cite
 
 Consider citing our paper if used in your own work:
-(Fill with the references to your own published work)
+Waiting for publication
 
 ### DOI
 https://doi.org/XXXXXXX
