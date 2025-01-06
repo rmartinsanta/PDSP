@@ -1,6 +1,9 @@
 # [PDSP](https://doi.org/XXXXX)
 Power Dominating Set Problem. Under review, README will be updated soon after publication.
 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10015214.svg)](https://doi.org/10.5281/zenodo.10015214)
+
 ## Abstract
 We propose a reference framework to apply the multiparent path relinking (MPR) methodology.
 MPR is an extension of path relinking (PR) that has been proposed and described but,
