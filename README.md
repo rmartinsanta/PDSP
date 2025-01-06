@@ -2,13 +2,25 @@
 Power Dominating Set Problem. Under review, README will be updated soon after publication.
 
 ## Abstract
-Paper abstract or summary of the article submitted.
+We propose a reference framework to apply the multiparent path relinking (MPR) methodology.
+MPR is an extension of path relinking (PR) that has been proposed and described but,
+to the best of our knowledge, it has never been applied. PR is a trajectory-based neighborhood search strategy
+that explores paths that traverse pairs of solutions. PR has been widely used for search intensification
+purposes within metaheuristic implementations. To show how MPR can be embedded in more than one setting, our proposal
+consists of both employing MPR as a post-processing step in a greedy randomized adaptive search procedure (GRASP) and
+as the combination method in a scatter search (SS). We use the power dominating set problem (PDSP) as our testing
+platform because its difficulty and structure enable the design and assessment of various strategies. The PDSP seeks
+to find the minimum placement of measurement devices in an electrical network to monitor the entire system. Our 
+computational experiments are designed to identify the contribution of each element of our proposed MRP implementations.
 
 ## Authors
 Authors involved in this work and their respective contributions:
-- Person1.
-- Person2.
-- 
+- Raúl Martín Santamaría
+- Anna Martínez-Gavara
+- Ana Dolores López-Sánchez
+- Manuel Laguna
+
+
 ## Datasets
 
 
@@ -17,29 +29,42 @@ Authors involved in this work and their respective contributions:
 (Explain instance format so other users may easily use them even if not using your code.)
 
 
-## Compiling
+## Executing (Recommended)
+Use Docker to easily create a Java environment with all dependencies installed. You can use the following commands to run the project:
 
-You can easily compile and build an executable artifact of this project using Maven and a recent version of Java (17+):
-```text
+```bash
+# Build container
+docker build -f docker/Dockerfile -t rmartinsanta/pdsp .
+# Execute container mapping the results folder to easily retrieve results
+# If using Windows, use powershell and replace $(pwd) with $PWD
+docker run --rm --mount type=bind,src=$(pwd)/results,target=/results rmartinsanta/pdsp
+```
+
+## Compiling manually 
+Use a Java LTS version such as Java 21 to compile and run the project. Requires [Maven](https://maven.apache.org/install.html). Example:
+```bash
 mvn clean package
 ```
 
-## Executing
+Will create the executable JAR file inside the `target` folder.
 
-Executable artifacts are generated inside the `target` directory. For ease of use, there is an already executable JAR inside the target folder.
+## Executing manually
+
+Executable artifacts are generated inside the `target` directory.
 To review a full list of configurable parameters, see the `application.yml`, or review the [configuration section of the Mork documentation](https://docs.mork-optimization.com/en/latest/features/config/).
 
 Example 1: execute all experiments with the default set of instances
 ```text
-java -jar target/PDSP-0.19-SNAPSHOT.jar 
+java -jar target/PDSP-0.19.jar 
 ```
 
 Example: execute `Experiment2` using a different set of instances, located inside the `newinstances` folder.
 ```
-java -jar target/PDSP-0.19-SNAPSHOT.jar --instances.path.default=newinstances --solver.experiment=Experiment2
+java -jar target/PDSP-0.19.jar --instances.path.default=newinstances --solver.experiment=Experiment2
 ```
 
-All experiments are declared inside the `src/main/java/es/urjc/etsii/grafo/PDSP/experiments` folder. New experiments can be easily added and invoked as necessary.
+All experiments are declared inside the `src/main/java/es/urjc/etsii/grafo/PDSP/experiments` folder.
+New experiments can be easily added and invoked as necessary.
 
 ## Cite
 

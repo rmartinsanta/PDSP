@@ -1,15 +1,27 @@
-FROM azul/zulu-openjdk-alpine:17-jre-headless
+FROM maven:3-eclipse-temurin-21 AS build
+RUN mkdir /build
+WORKDIR /build
+COPY ./pom.xml pom.xml
+
+# fetch all dependencies
+RUN mvn dependency:go-offline -B
+
+# copy sources and compile
+COPY ./src src
+RUN mvn clean package -B -Dmaven.test.skip=true
+
+FROM eclipse-temurin:21-alpine AS run
 
 # Remember to add extra files if needed by your project
 COPY instances /instances
-COPY target/PDSP*.jar /app.jar
+COPY *.csv *.tsv /
+COPY --from=build /root/.m2 /root/.m2
+COPY --from=build /build/target/*.jar /app.jar
 
 CMD [\
-"/usr/bin/java",\
-"--add-opens", "java.base/java.util=ALL-UNNAMED",\
-"--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",\
-"--add-opens", "java.base/java.lang=ALL-UNNAMED",\
-# Set memory usage
-"-Xmx1G", "-Xms1G",\
+"java",\
+"--enable-preview",\
+# TODO Set memory usage, default to 4 GB
+"-Xmx4G", "-Xms4G",\
 "-jar", "/app.jar"\
 ]
